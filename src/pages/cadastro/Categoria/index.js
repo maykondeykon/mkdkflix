@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import PageDefault from "../../../components/PageDefault";
-import { Link } from "react-router-dom";
-import FormField from "../../../components/FormField";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import PageDefault from '../../../components/PageDefault';
+import FormField from '../../../components/FormField';
+import Button from '../../../components/Button';
 
 function CadastroCategoria() {
   const valoresIniciais = {
-    nome: "",
-    descricao: "",
-    cor: "",
+    nome: '',
+    descricao: '',
+    cor: '',
   };
   const [categorias, setCategorias] = useState([]);
   const [values, setValues] = useState(valoresIniciais);
@@ -22,14 +23,17 @@ function CadastroCategoria() {
 
   function handleChange(infosDoEvento) {
     setValue(
-      infosDoEvento.target.getAttribute("name"),
-      infosDoEvento.target.value
+      infosDoEvento.target.getAttribute('name'),
+      infosDoEvento.target.value,
     );
   }
 
   return (
     <PageDefault>
-      <h1>Cadastro de categoria: {values.nome}</h1>
+      <h1>
+        Cadastro de categoria:
+        {values.nome}
+      </h1>
 
       <form
         onSubmit={function handleSubmit(event) {
@@ -49,7 +53,7 @@ function CadastroCategoria() {
 
         <FormField
           label="Descrição"
-          type="textArea"
+          type="textarea"
           name="descricao"
           value={values.descricao}
           onChange={handleChange}
@@ -63,17 +67,19 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
 
-        <button>Cadastrar</button>
+        <Button>Cadastrar</Button>
       </form>
 
       <ul>
-        {categorias.map((categoria, indice) => {
-          return (
-            <li key={`${categoria}${indice}`}>
-              {categoria.nome}-{categoria.descricao}-{categoria.cor}
-            </li>
-          );
-        })}
+        {categorias.map((categoria, indice) => (
+          <li key={`${categoria}${indice}`}>
+            {categoria.nome}
+            -
+            {categoria.descricao}
+            -
+            {categoria.cor}
+          </li>
+        ))}
       </ul>
 
       <Link to="/">Home</Link>
